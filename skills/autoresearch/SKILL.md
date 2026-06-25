@@ -1,5 +1,6 @@
 ---
 name: autoresearch
+user-invocable: false
 description: >
   Autonomous iterative research loop. Takes a topic, runs web searches, fetches sources,
   synthesizes findings, and files everything into the wiki as structured pages.

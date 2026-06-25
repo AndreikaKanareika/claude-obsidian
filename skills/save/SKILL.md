@@ -1,5 +1,6 @@
 ---
 name: save
+user-invocable: false
 description: >
   Save the current conversation, answer, or insight into the Obsidian wiki vault as a
   structured note. Analyzes the chat, determines the right note type, creates frontmatter,

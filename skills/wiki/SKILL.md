@@ -1,5 +1,6 @@
 ---
 name: wiki
+user-invocable: false
 description: >
   Claude + Obsidian knowledge companion. Sets up a persistent wiki vault, scaffolds
   structure from a one-sentence description, and routes to specialized sub-skills.
