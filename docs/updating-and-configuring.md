@@ -50,7 +50,7 @@ Or from the CLI, refresh the marketplace metadata and reinstall to pull the upda
 
 ```bash
 # Refresh cached marketplace metadata, then reinstall
-claude plugin marketplace update AgriciDaniel/claude-obsidian
+claude plugin marketplace update AndreikaKanareika/claude-obsidian
 claude plugin install claude-obsidian@agricidaniel-claude-obsidian
 ```
 
@@ -64,8 +64,8 @@ If `claude plugin marketplace update` isn't available in your Claude Code versio
 and re-add the marketplace instead:
 
 ```bash
-claude plugin marketplace remove AgriciDaniel/claude-obsidian
-claude plugin marketplace add AgriciDaniel/claude-obsidian
+claude plugin marketplace remove AndreikaKanareika/claude-obsidian
+claude plugin marketplace add AndreikaKanareika/claude-obsidian
 claude plugin install claude-obsidian@agricidaniel-claude-obsidian
 ```
 
@@ -104,7 +104,7 @@ section):
 
 ```bash
 # Step 1: add the marketplace
-claude plugin marketplace add AgriciDaniel/claude-obsidian
+claude plugin marketplace add AndreikaKanareika/claude-obsidian
 
 # Step 2: install the plugin
 claude plugin install claude-obsidian@agricidaniel-claude-obsidian
