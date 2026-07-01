@@ -635,7 +635,7 @@ Plugin install:
 
 ```bash
 claude plugin uninstall claude-obsidian@agricidaniel-claude-obsidian
-claude plugin marketplace remove AndreikaKanareika/claude-obsidian
+claude plugin marketplace remove agricidaniel-claude-obsidian
 ```
 
 Clone install (delete the folder):

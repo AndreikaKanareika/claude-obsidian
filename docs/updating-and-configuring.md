@@ -46,11 +46,13 @@ to the current directory) — so this change is safe and opt-in.
 The simplest path is the interactive menu — run `/plugin` in a Claude Code session, open
 **Manage plugins → claude-obsidian**, and choose update/reinstall.
 
-Or from the CLI, refresh the marketplace metadata and reinstall to pull the update:
+Or from the CLI, refresh the marketplace metadata and reinstall to pull the update.
+Note: `add` takes the `owner/repo`, but `update`/`remove` take the registered
+marketplace **name** (`agricidaniel-claude-obsidian`), not the repo path:
 
 ```bash
 # Refresh cached marketplace metadata, then reinstall
-claude plugin marketplace update AndreikaKanareika/claude-obsidian
+claude plugin marketplace update agricidaniel-claude-obsidian
 claude plugin install claude-obsidian@agricidaniel-claude-obsidian
 ```
 
@@ -64,7 +66,7 @@ If `claude plugin marketplace update` isn't available in your Claude Code versio
 and re-add the marketplace instead:
 
 ```bash
-claude plugin marketplace remove AndreikaKanareika/claude-obsidian
+claude plugin marketplace remove agricidaniel-claude-obsidian
 claude plugin marketplace add AndreikaKanareika/claude-obsidian
 claude plugin install claude-obsidian@agricidaniel-claude-obsidian
 ```
