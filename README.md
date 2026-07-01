@@ -5,10 +5,10 @@
   <img src="wiki/meta/claude-obsidian-gif-cover-16x9.gif" alt="claude-obsidian: persistent compounding wiki vault for Claude Code and Obsidian" width="100%" />
 </p>
 
-[![GitHub stars](https://img.shields.io/github/stars/AgriciDaniel/claude-obsidian?style=flat&color=e8734a)](https://github.com/AgriciDaniel/claude-obsidian/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/AndreikaKanareika/claude-obsidian?style=flat&color=e8734a)](https://github.com/AndreikaKanareika/claude-obsidian/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Release](https://img.shields.io/github/v/release/AgriciDaniel/claude-obsidian?color=blue)](https://github.com/AgriciDaniel/claude-obsidian/releases/latest)
-[![CI](https://github.com/AgriciDaniel/claude-obsidian/actions/workflows/test.yml/badge.svg)](https://github.com/AgriciDaniel/claude-obsidian/actions/workflows/test.yml)
+[![Release](https://img.shields.io/github/v/release/AndreikaKanareika/claude-obsidian?color=blue)](https://github.com/AndreikaKanareika/claude-obsidian/releases/latest)
+[![CI](https://github.com/AndreikaKanareika/claude-obsidian/actions/workflows/test.yml/badge.svg)](https://github.com/AndreikaKanareika/claude-obsidian/actions/workflows/test.yml)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-plugin-8B5CF6)](https://code.claude.com/docs/en/discover-plugins)
 [![Obsidian](https://img.shields.io/badge/Obsidian-v1.9.10%2B-7c3aed)](https://obsidian.md)
 [![Agent Skills](https://img.shields.io/badge/Agent%20Skills-Compatible-blue)](https://agentskills.io)
@@ -21,7 +21,7 @@ Open-source Obsidian AI plugin for AI note-taking, personal knowledge management
 
 > **Two ways to get this skill.** Pick the one that fits how you work.
 >
-> - 🌐 **Public open-source build** (latest: `v1.9.2`, recommended): the free, MIT-licensed release on [Daniel Agrici's GitHub](https://github.com/AgriciDaniel/claude-obsidian). Open to anyone, no membership required. Ships everything: v1.7 Compound Vault, v1.8 methodology modes, and the v1.9 thinking framework plus audit hardening.
+> - 🌐 **Public open-source build** (latest: `v1.9.2`, recommended): the free, MIT-licensed release on [Daniel Agrici's GitHub](https://github.com/AndreikaKanareika/claude-obsidian). Open to anyone, no membership required. Ships everything: v1.7 Compound Vault, v1.8 methodology modes, and the v1.9 thinking framework plus audit hardening.
 > - ⚡ **AI Marketing Hub Pro**: the same MIT-licensed core, plus earliest access to in-development features before they land here, direct collaboration, and the [Pro community](https://www.skool.com/ai-marketing-hub-pro). Pro members install from the [AI Marketing Hub](https://github.com/AI-Marketing-Hub) org mirror (swap note under Option 2 below).
 
 > ✨ **v1.7 "Compound Vault" refoundation**: Obsidian CLI as default transport, hybrid retrieval (contextual prefix + BM25 + cosine rerank per [Anthropic's Sept 2024 research](https://www.anthropic.com/news/contextual-retrieval)), per-file advisory locking that closes a latent multi-writer corruption hole, and substrate alignment with [kepano/obsidian-skills](https://github.com/kepano/obsidian-skills). Full guide: [docs/compound-vault-guide.md](docs/compound-vault-guide.md). Optional [DragonScale Memory](docs/dragonscale-guide.md) extension (log folds, deterministic page addresses, semantic tiling lint, boundary-first autoresearch).
@@ -110,12 +110,12 @@ Most Obsidian AI plugins are chat interfaces. They answer questions about your e
 
 ## Quick Start
 
-> ℹ️ The commands below install the **public open-source build** from `AgriciDaniel/claude-obsidian` (recommended, no membership needed). **AI Marketing Hub Pro members** who want early access to in-development features can swap `AgriciDaniel/claude-obsidian` for `AI-Marketing-Hub/claude-obsidian` (Option 2 also swaps the plugin slug; see the note under that option).
+> ℹ️ The commands below install the **public open-source build** from `AndreikaKanareika/claude-obsidian` (recommended, no membership needed). **AI Marketing Hub Pro members** who want early access to in-development features can swap `AndreikaKanareika/claude-obsidian` for `AI-Marketing-Hub/claude-obsidian` (Option 2 also swaps the plugin slug; see the note under that option).
 
 ### Option 1: Clone as vault (recommended, full setup in 2 minutes)
 
 ```bash
-git clone https://github.com/AgriciDaniel/claude-obsidian
+git clone https://github.com/AndreikaKanareika/claude-obsidian
 cd claude-obsidian
 bash bin/setup-vault.sh
 ```
@@ -134,12 +134,12 @@ Plugin installation is a two-step process. First add the marketplace catalog, th
 
 > ℹ️ **Which version are you installing?**
 >
-> - **Public (recommended, no membership):** the commands below install the free, MIT-licensed release from [`AgriciDaniel/claude-obsidian`](https://github.com/AgriciDaniel/claude-obsidian). Nothing to sign up for.
-> - **AI Marketing Hub Pro member?** For early access to in-development features, swap `AgriciDaniel/claude-obsidian` for `AI-Marketing-Hub/claude-obsidian` and the plugin slug `claude-obsidian@agricidaniel-claude-obsidian` for `claude-obsidian@ai-marketing-hub-claude-obsidian`. The org mirror requires an authenticated `gh auth login` (or GitHub PAT) with access to the `AI-Marketing-Hub` org. If `/plugin marketplace add` returns a 404, your account is not in the org yet. DM in the [Skool community](https://www.skool.com/ai-marketing-hub-pro) to get added.
+> - **Public (recommended, no membership):** the commands below install the free, MIT-licensed release from [`AndreikaKanareika/claude-obsidian`](https://github.com/AndreikaKanareika/claude-obsidian). Nothing to sign up for.
+> - **AI Marketing Hub Pro member?** For early access to in-development features, swap `AndreikaKanareika/claude-obsidian` for `AI-Marketing-Hub/claude-obsidian` and the plugin slug `claude-obsidian@agricidaniel-claude-obsidian` for `claude-obsidian@ai-marketing-hub-claude-obsidian`. The org mirror requires an authenticated `gh auth login` (or GitHub PAT) with access to the `AI-Marketing-Hub` org. If `/plugin marketplace add` returns a 404, your account is not in the org yet. DM in the [Skool community](https://www.skool.com/ai-marketing-hub-pro) to get added.
 
 ```bash
 # Step 1: add the marketplace
-claude plugin marketplace add AgriciDaniel/claude-obsidian
+claude plugin marketplace add AndreikaKanareika/claude-obsidian
 
 # Step 2: install the plugin
 claude plugin install claude-obsidian@agricidaniel-claude-obsidian
@@ -594,7 +594,7 @@ The best AI second brain keeps your data yours. claude-obsidian stores everythin
 Drop any source into the vault. Claude reads it, extracts the entities and concepts, links them to what you already have, and files it into a structured Obsidian vault. You ask questions; it answers from everything it has read and cites the pages. The knowledge base gets richer and more connected with every session.
 
 **How do I connect Claude to Obsidian as a second brain?**
-Two lines: `git clone https://github.com/AgriciDaniel/claude-obsidian`, then `cd claude-obsidian && bash bin/setup-vault.sh`. Open the folder as an Obsidian vault, open Claude Code in the same folder, and type `/wiki`. Full steps in [Quick Start](#quick-start).
+Two lines: `git clone https://github.com/AndreikaKanareika/claude-obsidian`, then `cd claude-obsidian && bash bin/setup-vault.sh`. Open the folder as an Obsidian vault, open Claude Code in the same folder, and type `/wiki`. Full steps in [Quick Start](#quick-start).
 
 **Is there a good Notion alternative for a private, AI-powered knowledge base?**
 Yes. claude-obsidian is an open-source, local-first alternative: your notes are plain Markdown on your own disk instead of a hosted database, and AI organizes them for you. No vendor lock-in and no monthly fee.
@@ -621,7 +621,7 @@ Methodology Modes (v1.8+) control **how** pages are organized: folder structure 
 No by default. The optional `/wiki-retrieve` skill has API egress (`contextual-prefix.py`) gated behind the `--allow-egress` consent flag. Without that flag, retrieval is fully local (BM25 + optional ollama rerank). Web egress in `/autoresearch` follows the same opt-in principle.
 
 **What is the difference between the public build and AI Marketing Hub Pro?**
-Both share the same MIT-licensed core on [`AgriciDaniel/claude-obsidian`](https://github.com/AgriciDaniel/claude-obsidian), which is the recommended install for everyone. AI Marketing Hub Pro members get earliest access to in-development features before they ship here, plus direct collaboration and the community. There are no paid-only features in the core.
+Both share the same MIT-licensed core on [`AndreikaKanareika/claude-obsidian`](https://github.com/AndreikaKanareika/claude-obsidian), which is the recommended install for everyone. AI Marketing Hub Pro members get earliest access to in-development features before they ship here, plus direct collaboration and the community. There are no paid-only features in the core.
 
 **What is DragonScale Memory?**
 An optional opt-in extension (`bash bin/setup-dragonscale.sh`) that adds four memory mechanisms: log folds (rollup of past entries), deterministic page addresses (counter-based unique IDs), semantic tiling lint (chunk-boundary validation via ollama), and boundary-first autoresearch (research the vault's "frontier" first). Not required for normal use. Full guide: [`docs/dragonscale-guide.md`](docs/dragonscale-guide.md).
@@ -653,7 +653,7 @@ Plugin install:
 
 ```bash
 claude plugin uninstall claude-obsidian@agricidaniel-claude-obsidian
-claude plugin marketplace remove AgriciDaniel/claude-obsidian
+claude plugin marketplace remove AndreikaKanareika/claude-obsidian
 ```
 
 Clone install (delete the folder):
@@ -706,8 +706,8 @@ MIT License. See [LICENSE](LICENSE) for full text. Free for personal and commerc
 
 ## Star History
 
-<a href="https://star-history.com/#AgriciDaniel/claude-obsidian&Date">
-  <img src="https://api.star-history.com/svg?repos=AgriciDaniel/claude-obsidian&type=Date" alt="Star history chart for AgriciDaniel/claude-obsidian on GitHub" width="640" />
+<a href="https://star-history.com/#AndreikaKanareika/claude-obsidian&Date">
+  <img src="https://api.star-history.com/svg?repos=AndreikaKanareika/claude-obsidian&type=Date" alt="Star history chart for AndreikaKanareika/claude-obsidian on GitHub" width="640" />
 </a>
 
 ---
