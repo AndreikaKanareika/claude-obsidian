@@ -2,7 +2,8 @@
 # Test runner entry points for DragonScale and vault tooling.
 
 .PHONY: test test-address test-tiling test-boundary test-bm25 test-retrieve \
-        test-lock test-concurrent test-mode test-contextual setup-dragonscale \
+        test-lock test-concurrent test-mode test-contextual test-vault-root \
+        test-auto-commit setup-dragonscale \
         setup-retrieve setup-mode clean-test-state help
 
 help:
@@ -17,12 +18,14 @@ help:
 	@echo "  make test-concurrent  multi-writer correctness gate (shell, hermetic)"
 	@echo "  make test-mode        scripts/wiki-mode.py tests (python, hermetic)"
 	@echo "  make test-contextual  scripts/contextual-prefix.py cache-floor tests (python, hermetic)"
+	@echo "  make test-vault-root  scripts/vault-root.sh resolution tests (shell, hermetic)"
+	@echo "  make test-auto-commit scripts/auto-commit.sh tests (shell, hermetic)"
 	@echo "  make setup-dragonscale Run bin/setup-dragonscale.sh against this vault"
 	@echo "  make setup-retrieve   Run bin/setup-retrieve.sh against this vault (opt-in v1.7)"
 	@echo "  make setup-mode       Run bin/setup-mode.sh to pick a methodology mode (opt-in v1.8)"
 	@echo "  make clean-test-state Remove runtime lockfiles and tiling/embed caches"
 
-test: test-address test-tiling test-boundary test-bm25 test-retrieve test-lock test-concurrent test-mode test-contextual
+test: test-address test-tiling test-boundary test-bm25 test-retrieve test-lock test-concurrent test-mode test-contextual test-vault-root test-auto-commit
 	@echo ""
 	@echo "All tests passed."
 
@@ -61,6 +64,14 @@ test-mode:
 test-contextual:
 	@echo "=== test_contextual_prefix.py ==="
 	@python3 tests/test_contextual_prefix.py
+
+test-vault-root:
+	@echo "=== test_vault_root.sh ==="
+	@bash tests/test_vault_root.sh
+
+test-auto-commit:
+	@echo "=== test_auto_commit.sh ==="
+	@bash tests/test_auto_commit.sh
 
 setup-dragonscale:
 	@bash bin/setup-dragonscale.sh

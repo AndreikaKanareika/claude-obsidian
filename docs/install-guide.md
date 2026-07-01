@@ -228,17 +228,37 @@ Point any Claude Code project at this vault. Add to that project's `CLAUDE.md`:
 
 ```markdown
 ## Wiki Knowledge Base
-Path: ~/path/to/claude-obsidian
+My persistent knowledge base lives at the path in `$CLAUDE_OBSIDIAN_VAULT`
+(or an absolute path like `~/path/to/vault`), reachable via the `obsidian-vault`
+MCP tools (or by reading the files directly).
 
-When you need context not in this project:
-1. Read wiki/hot.md first (recent context cache)
-2. If not enough, read wiki/index.md
-3. If you need domain details, read the relevant wiki page
+Before answering anything that isn't a self-contained coding task, consult it:
+1. Read wiki/hot.md (recent-context cache)
+2. Then wiki/index.md (master catalog)
+3. Drill into the specific wiki pages that match, and cite them
+If nothing relevant exists, say so and answer normally.
 
-Do NOT read the wiki for general coding questions.
+Skip the wiki for routine coding tasks unrelated to its topics, or things already in this project.
+
+Write back too, don't just read: when a durable insight, decision, or answer emerges,
+proactively offer to save it (/save) or ingest sources (/wiki-ingest) to the vault via the
+obsidian-vault MCP tools (path-agnostic, so they work from any project). Reading is automatic
+when CLAUDE_OBSIDIAN_VAULT is set in ~/.claude/settings.json — claude-obsidian
+v1.9.2-global-access+ injects wiki/hot.md at session start from any directory.
 ```
 
+> To point *this* project at a different vault than the global default, use an absolute path
+> in place of `$CLAUDE_OBSIDIAN_VAULT`. The auto-commit platform caveat (`flock` on Windows)
+> lives in the [platform note](updating-and-configuring.md), not in this copy-paste block.
+
 Your executive assistant, coding projects, and content workflows all draw from the same knowledge base.
+
+**Make the hooks fire from any directory (v1.9.2-global-access):** by default the plugin's command
+hooks only run when Claude Code is launched *inside* the vault. To drive one global vault
+from other projects, set `CLAUDE_OBSIDIAN_VAULT` to the vault's absolute path in
+`~/.claude/settings.json`'s `env` block. Then hot-cache injection, auto-commit, and the
+Stop-time refresh nudge all work cross-project, and MCP writes get committed at session
+end. Step-by-step: [updating-and-configuring.md](updating-and-configuring.md).
 
 ---
 

@@ -553,19 +553,54 @@ In another project's CLAUDE.md, add:
 
 ```markdown
 ## Wiki Knowledge Base
-Path: ~/Documents/Obsidian Vault
+My persistent knowledge base lives at the path in `$CLAUDE_OBSIDIAN_VAULT`
+(or an absolute path like `~/path/to/vault`), reachable via the `obsidian-vault`
+MCP tools (or by reading the files directly).
 
-When you need context not already in this project:
-1. Read wiki/hot.md first (recent context, ~500 words)
-2. If not enough, read wiki/index.md (full catalog)
-3. If you need domain specifics, read wiki/<domain>/_index.md
-4. Only then read individual wiki pages
+Before answering anything that isn't a self-contained coding task, consult it:
+1. Read wiki/hot.md (recent-context cache)
+2. Then wiki/index.md (master catalog)
+3. Drill into the specific wiki pages that match, and cite them
+If nothing relevant exists, say so and answer normally.
 
-Do NOT read the wiki for general coding questions, things already in this
-project's context, or tasks unrelated to [your domain].
+Skip the wiki for routine coding tasks unrelated to its topics, or things already in this project.
+
+Write back too, don't just read: when a durable insight, decision, or answer emerges,
+proactively offer to save it (/save) or ingest sources (/wiki-ingest) to the vault via the
+obsidian-vault MCP tools (path-agnostic, so they work from any project). Reading is automatic
+when CLAUDE_OBSIDIAN_VAULT is set in ~/.claude/settings.json — claude-obsidian
+v1.9.2-global-access+ injects wiki/hot.md at session start from any directory.
 ```
 
+> To point *this* project at a different vault than the global default, use an absolute path
+> in place of `$CLAUDE_OBSIDIAN_VAULT`. The auto-commit platform caveat (`flock` on Windows)
+> lives in the platform note in
+> [docs/updating-and-configuring.md](docs/updating-and-configuring.md), not in this copy-paste block.
+
 This keeps token usage low. Hot cache costs ~500 tokens. Index costs ~1000 tokens. Individual pages cost 100-300 tokens each.
+
+### 6.1 — Make the command hooks work cross-project (v1.9.2-global-access)
+
+Reading the wiki from another project works with just the `CLAUDE.md` pointer above. But
+the plugin's **command hooks** — hot-cache injection at session start, auto-commit of
+vault changes, and the Stop-time hot-cache refresh nudge — use paths relative to the
+current directory, so by default they only fire when Claude Code runs *inside* the vault.
+
+To make them fire from any directory, set the vault's absolute path once in
+`~/.claude/settings.json`:
+
+```jsonc
+{
+  "env": {
+    "CLAUDE_OBSIDIAN_VAULT": "/absolute/path/to/your/vault"
+  }
+}
+```
+
+The hooks read `$CLAUDE_OBSIDIAN_VAULT` (falling back to the current directory when
+unset, preserving pre-global-access behavior) and the Stop hook additionally commits vault writes
+made via the `obsidian-vault` MCP server. Full walkthrough:
+[docs/updating-and-configuring.md](docs/updating-and-configuring.md).
 
 ---
 

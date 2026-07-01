@@ -290,18 +290,57 @@ Point any Claude Code project at this vault. Add to that project's `CLAUDE.md`:
 
 ```markdown
 ## Wiki Knowledge Base
-Path: ~/path/to/vault
+My persistent knowledge base lives at the path in `$CLAUDE_OBSIDIAN_VAULT`
+(or an absolute path like `~/path/to/vault`), reachable via the `obsidian-vault`
+MCP tools (or by reading the files directly).
 
-When you need context not already in this project:
-1. Read wiki/hot.md first (recent context cache)
-2. If not enough, read wiki/index.md
-3. If you need domain details, read the relevant domain sub-index
-4. Only then drill into specific wiki pages
+Before answering anything that isn't a self-contained coding task, consult it:
+1. Read wiki/hot.md (recent-context cache)
+2. Then wiki/index.md (master catalog)
+3. Drill into the specific wiki pages that match, and cite them
+If nothing relevant exists, say so and answer normally.
 
-Do NOT read the wiki for general coding questions or tasks unrelated to [domain].
+Skip the wiki for routine coding tasks unrelated to its topics, or things already in this project.
+
+Write back too, don't just read: when a durable insight, decision, or answer emerges,
+proactively offer to save it (/save) or ingest sources (/wiki-ingest) to the vault via the
+obsidian-vault MCP tools (path-agnostic, so they work from any project). Reading is automatic
+when CLAUDE_OBSIDIAN_VAULT is set in ~/.claude/settings.json — claude-obsidian
+v1.9.2-global-access+ injects wiki/hot.md at session start from any directory.
 ```
 
+> To point *this* project at a different vault than the global default, use an absolute path
+> in place of `$CLAUDE_OBSIDIAN_VAULT`. The auto-commit platform caveat (`flock` on Windows)
+> lives in the [platform note](docs/updating-and-configuring.md), not in this copy-paste block.
+
 Your executive assistant, coding projects, and content workflows all draw from the same knowledge base.
+
+### Make the hooks work from any directory (v1.9.2-global-access)
+
+The plugin's command hooks (hot-cache injection at session start, auto-commit of
+vault changes, the Stop-time hot-cache refresh nudge) historically only fired when
+Claude Code ran **inside** the vault. Set one environment variable and they work from
+**any** project directory pointed at a single global vault:
+
+```jsonc
+// ~/.claude/settings.json
+{
+  "env": {
+    "CLAUDE_OBSIDIAN_VAULT": "/absolute/path/to/your/vault"
+  }
+}
+```
+
+With it set, the hooks resolve the vault by absolute path. Unset, they fall back to the
+current directory — exactly the pre-global-access behavior. The Stop hook now also commits vault
+writes made via the `obsidian-vault` MCP server (previously those never auto-committed).
+See [docs/updating-and-configuring.md](docs/updating-and-configuring.md) for the full
+setup.
+
+> **Windows note:** auto-commit needs `flock` (via `wiki-lock.sh`), which Git Bash lacks —
+> where it's missing the commit **defers** and you commit the vault manually; hot-cache
+> injection and reading still work. Details in the guide's
+> [platform note](docs/updating-and-configuring.md).
 
 ---
 
