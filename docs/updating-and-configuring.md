@@ -232,6 +232,5 @@ calls intact so cross-project resolution keeps working.
 
 ## See also
 
-- Design spec: [`superpowers/specs/2026-07-01-vault-path-aware-hooks-design.md`](superpowers/specs/2026-07-01-vault-path-aware-hooks-design.md)
 - Changelog: [`../CHANGELOG.md`](../CHANGELOG.md) → `[1.9.2-global-access]`
 - Cross-project reading setup: [`../README.md`](../README.md#cross-project-knowledge-base)

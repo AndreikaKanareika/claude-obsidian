@@ -11,7 +11,6 @@ no auto-commit, and no Stop-time refresh nudge unless the session was launched i
 vault. Additionally, vault writes made through the `obsidian-vault` **MCP** server never
 auto-committed (the `PostToolUse` matcher is `Write|Edit`, which MCP calls are not).
 
-Design spec: [`docs/superpowers/specs/2026-07-01-vault-path-aware-hooks-design.md`](docs/superpowers/specs/2026-07-01-vault-path-aware-hooks-design.md).
 Setup/upgrade walkthrough: [`docs/updating-and-configuring.md`](docs/updating-and-configuring.md).
 
 ### Added
