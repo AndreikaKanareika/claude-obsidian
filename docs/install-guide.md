@@ -1,9 +1,7 @@
 # claude-obsidian: Install Guide
 
 **Claude + Obsidian Knowledge Companion**
-Version 1.9.2 · public canonical: [github.com/AgriciDaniel/claude-obsidian](https://github.com/AgriciDaniel/claude-obsidian) · community early-access mirror (Pro): [AI Marketing Hub org](https://github.com/AI-Marketing-Hub)
-
-> ℹ️ The install commands below use the **public open-source** URLs (`AgriciDaniel/claude-obsidian`), recommended for everyone and requiring no membership. [AI Marketing Hub Pro](https://www.skool.com/ai-marketing-hub-pro) members who want early access to in-development features can swap every `AgriciDaniel/claude-obsidian` for `AI-Marketing-Hub/claude-obsidian` and the plugin slug `claude-obsidian@agricidaniel-claude-obsidian` for `claude-obsidian@ai-marketing-hub-claude-obsidian`.
+Version 1.9.2 · [github.com/AndreikaKanareika/claude-obsidian](https://github.com/AndreikaKanareika/claude-obsidian)
 
 > **Optional: DragonScale Memory extension.** If you want flat extractive log folds, deterministic page addresses, semantic tiling lint, and boundary-first autoresearch topic selection, run `bash bin/setup-dragonscale.sh` after the base install. Extra prerequisites beyond the base: `flock` (standard on Linux; available via `util-linux` on macOS) and `python3` (for the tiling and boundary helpers). Optional: `ollama` with `nomic-embed-text` pulled if you want the semantic tiling lint (Mechanism 3 only; it no-ops gracefully when ollama or the model is unavailable). The boundary-first scorer (Mechanism 4) needs only `python3`, no ollama. See [`docs/dragonscale-guide.md`](./dragonscale-guide.md) for the user-facing guide, `wiki/concepts/DragonScale Memory.md` for the full spec, and `CHANGELOG.md` for what shipped in 1.6.0.
 
@@ -34,7 +32,7 @@ Built on Andrej Karpathy's LLM Wiki pattern.
 Full setup in under 2 minutes.
 
 ```bash
-git clone https://github.com/AgriciDaniel/claude-obsidian
+git clone https://github.com/AndreikaKanareika/claude-obsidian
 cd claude-obsidian
 bash bin/setup-vault.sh
 ```
@@ -49,7 +47,7 @@ Plugin installation in Claude Code is a two-step process. First add the marketpl
 
 ```bash
 # Step 1: add the marketplace
-claude plugin marketplace add AgriciDaniel/claude-obsidian
+claude plugin marketplace add AndreikaKanareika/claude-obsidian
 
 # Step 2: install the plugin
 claude plugin install claude-obsidian@agricidaniel-claude-obsidian
@@ -228,27 +226,46 @@ Point any Claude Code project at this vault. Add to that project's `CLAUDE.md`:
 
 ```markdown
 ## Wiki Knowledge Base
-Path: ~/path/to/claude-obsidian
+My persistent knowledge base lives at the path in `$CLAUDE_OBSIDIAN_VAULT`
+(or an absolute path like `~/path/to/vault`), reachable via the `obsidian-vault`
+MCP tools (or by reading the files directly).
 
-When you need context not in this project:
-1. Read wiki/hot.md first (recent context cache)
-2. If not enough, read wiki/index.md
-3. If you need domain details, read the relevant wiki page
+Before answering anything that isn't a self-contained coding task, consult it:
+1. Read wiki/hot.md (recent-context cache)
+2. Then wiki/index.md (master catalog)
+3. Drill into the specific wiki pages that match, and cite them
+If nothing relevant exists, say so and answer normally.
 
-Do NOT read the wiki for general coding questions.
+Skip the wiki for routine coding tasks unrelated to its topics, or things already in this project.
+
+Write back too, don't just read: when a durable insight, decision, or answer emerges,
+proactively offer to save it (/save) or ingest sources (/wiki-ingest) to the vault via the
+obsidian-vault MCP tools (path-agnostic, so they work from any project). Reading is automatic
+when CLAUDE_OBSIDIAN_VAULT is set in ~/.claude/settings.json — claude-obsidian
+v1.9.2-global-access+ injects wiki/hot.md at session start from any directory.
 ```
 
+> To point *this* project at a different vault than the global default, use an absolute path
+> in place of `$CLAUDE_OBSIDIAN_VAULT`. The auto-commit platform caveat (`flock` on Windows)
+> lives in the [platform note](updating-and-configuring.md), not in this copy-paste block.
+
 Your executive assistant, coding projects, and content workflows all draw from the same knowledge base.
+
+**Make the hooks fire from any directory (v1.9.2-global-access):** by default the plugin's command
+hooks only run when Claude Code is launched *inside* the vault. To drive one global vault
+from other projects, set `CLAUDE_OBSIDIAN_VAULT` to the vault's absolute path in
+`~/.claude/settings.json`'s `env` block. Then hot-cache injection, auto-commit, and the
+Stop-time refresh nudge all work cross-project, and MCP writes get committed at session
+end. Step-by-step: [updating-and-configuring.md](updating-and-configuring.md).
 
 ---
 
 ## Support
 
-- **GitHub (public canonical)**: [github.com/AgriciDaniel/claude-obsidian](https://github.com/AgriciDaniel/claude-obsidian)
-- **Issues**: [github.com/AgriciDaniel/claude-obsidian/issues](https://github.com/AgriciDaniel/claude-obsidian/issues)
-- **Community early-access (Pro)**: [AI Marketing Hub org](https://github.com/AI-Marketing-Hub) · [Skool community](https://www.skool.com/ai-marketing-hub-pro)
+- **GitHub**: [github.com/AndreikaKanareika/claude-obsidian](https://github.com/AndreikaKanareika/claude-obsidian)
+- **Issues**: [github.com/AndreikaKanareika/claude-obsidian/issues](https://github.com/AndreikaKanareika/claude-obsidian/issues)
 
 ---
 
-*Built by [AgriciDaniel](https://github.com/AgriciDaniel) / AI Marketing Hub*
+*A fork of [claude-obsidian](https://github.com/AgriciDaniel/claude-obsidian) by AgriciDaniel (MIT-licensed).*
 *Based on Andrej Karpathy's LLM Wiki pattern*

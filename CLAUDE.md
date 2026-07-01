@@ -35,16 +35,28 @@ To reference this wiki from another Claude Code project, add to that project's C
 
 ```markdown
 ## Wiki Knowledge Base
-Path: /path/to/this/vault
+My persistent knowledge base lives at the path in `$CLAUDE_OBSIDIAN_VAULT`
+(or an absolute path like `~/path/to/vault`), reachable via the `obsidian-vault`
+MCP tools (or by reading the files directly).
 
-When you need context not already in this project:
-1. Read wiki/hot.md first (recent context, ~500 words)
-2. If not enough, read wiki/index.md
-3. If you need domain specifics, read wiki/<domain>/_index.md
-4. Only then read individual wiki pages
+Before answering anything that isn't a self-contained coding task, consult it:
+1. Read wiki/hot.md (recent-context cache)
+2. Then wiki/index.md (master catalog)
+3. Drill into the specific wiki pages that match, and cite them
+If nothing relevant exists, say so and answer normally.
 
-Do NOT read the wiki for general coding questions or things already in this project.
+Skip the wiki for routine coding tasks unrelated to its topics, or things already in this project.
+
+Write back too, don't just read: when a durable insight, decision, or answer emerges,
+proactively offer to save it (/save) or ingest sources (/wiki-ingest) to the vault via the
+obsidian-vault MCP tools (path-agnostic, so they work from any project). Reading is automatic
+when CLAUDE_OBSIDIAN_VAULT is set in ~/.claude/settings.json — claude-obsidian
+v1.9.2-global-access+ injects wiki/hot.md at session start from any directory.
 ```
+
+To point this project at a **different** vault than the global default, use an absolute path in place of `$CLAUDE_OBSIDIAN_VAULT`. Platform caveat for auto-commit (`flock` on Windows) lives in [docs/updating-and-configuring.md](docs/updating-and-configuring.md).
+
+**Command hooks cross-project (v1.9.2-global-access):** the `CLAUDE.md` pointer above covers *reading*. To make the plugin's command hooks (hot-cache injection, vault auto-commit, Stop-time refresh nudge) fire when Claude Code runs from *another* directory against a single global vault, set `CLAUDE_OBSIDIAN_VAULT` to the vault's absolute path in `~/.claude/settings.json`'s `env` block. Unset, hooks fall back to the current directory (pre-global-access behavior). The Stop hook also commits vault writes made via the `obsidian-vault` MCP server. See [docs/updating-and-configuring.md](docs/updating-and-configuring.md).
 
 ## Plugin Skills
 
@@ -68,7 +80,7 @@ Do NOT read the wiki for general coding questions or things already in this proj
 
 ## Concurrency (v1.7+)
 
-`scripts/wiki-lock.sh` provides per-file advisory locks for safe multi-writer ingest. Every wiki page write should be guarded by `wiki-lock acquire`/`release`. Stale-after default is 60s; cross-process release allowed by design. The PostToolUse hook defers `git add` while locks are held. Closes the latent multi-writer corruption hole from v1.6.
+`scripts/wiki-lock.sh` provides per-file advisory locks for safe multi-writer ingest. Every wiki page write should be guarded by `wiki-lock acquire`/`release`. Stale-after default is 60s; cross-process release allowed by design. Auto-commit (`scripts/auto-commit.sh`, shared by the PostToolUse and Stop hooks since the global-access release) defers `git add` while locks are held. Closes the latent multi-writer corruption hole from v1.6.
 
 ## Methodology Modes (v1.8+)
 
@@ -82,13 +94,3 @@ After staging changes for a non-trivial workstream but BEFORE running `git commi
 
 If you configured the MCP server, Claude can read and write vault notes directly.
 See `skills/wiki/references/mcp-setup.md` for setup instructions.
-
-## Release Blog Post
-
-After cutting a new release (git tag + `gh release create`), run:
-
-```
-/release-blog
-```
-
-This generates a blog post on https://agricidaniel.com/blog/, handles cover image generation, SEO metadata, FAQ schema, internal linking, sitemap/llms.txt updates, Vercel deployment, and Google indexing.

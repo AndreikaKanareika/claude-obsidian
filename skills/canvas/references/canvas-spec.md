@@ -243,7 +243,7 @@ function place_node(canvas, zone_label, new_w, new_h):
     {
       "id": "title-0001",
       "type": "text",
-      "text": "# Brand Reference\n\n**AI Marketing Hub** visual assets",
+      "text": "# Brand Reference\n\n**Acme Co** visual assets",
       "x": -920, "y": -2440, "width": 560, "height": 180, "color": "6"
     },
     {

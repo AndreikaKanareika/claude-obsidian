@@ -57,7 +57,6 @@ When the user opens this project for the first time:
 
 ## Reference
 
-- Plugin homepage (public canonical): https://github.com/AgriciDaniel/claude-obsidian
-- Community early-access mirror (Pro): https://github.com/AI-Marketing-Hub
+- Plugin homepage: https://github.com/AndreikaKanareika/claude-obsidian
 - Pattern source: https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f
 - Cross-reference: https://github.com/kepano/obsidian-skills (authoritative Obsidian-specific skills)

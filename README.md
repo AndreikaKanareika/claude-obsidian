@@ -5,24 +5,19 @@
   <img src="wiki/meta/claude-obsidian-gif-cover-16x9.gif" alt="claude-obsidian: persistent compounding wiki vault for Claude Code and Obsidian" width="100%" />
 </p>
 
-[![GitHub stars](https://img.shields.io/github/stars/AgriciDaniel/claude-obsidian?style=flat&color=e8734a)](https://github.com/AgriciDaniel/claude-obsidian/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/AndreikaKanareika/claude-obsidian?style=flat&color=e8734a)](https://github.com/AndreikaKanareika/claude-obsidian/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Release](https://img.shields.io/github/v/release/AgriciDaniel/claude-obsidian?color=blue)](https://github.com/AgriciDaniel/claude-obsidian/releases/latest)
-[![CI](https://github.com/AgriciDaniel/claude-obsidian/actions/workflows/test.yml/badge.svg)](https://github.com/AgriciDaniel/claude-obsidian/actions/workflows/test.yml)
+[![Release](https://img.shields.io/github/v/release/AndreikaKanareika/claude-obsidian?color=blue)](https://github.com/AndreikaKanareika/claude-obsidian/releases/latest)
+[![CI](https://github.com/AndreikaKanareika/claude-obsidian/actions/workflows/test.yml/badge.svg)](https://github.com/AndreikaKanareika/claude-obsidian/actions/workflows/test.yml)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-plugin-8B5CF6)](https://code.claude.com/docs/en/discover-plugins)
 [![Obsidian](https://img.shields.io/badge/Obsidian-v1.9.10%2B-7c3aed)](https://obsidian.md)
 [![Agent Skills](https://img.shields.io/badge/Agent%20Skills-Compatible-blue)](https://agentskills.io)
-[![Community](https://img.shields.io/badge/AI%20Marketing%20Hub-Pro%20community-purple)](https://www.skool.com/ai-marketing-hub-pro)
-[![Blog Post](https://img.shields.io/badge/Deep_Dive-Blog_Post-22c55e)](https://agricidaniel.com/blog/claude-obsidian-ai-second-brain)
 
 Claude + Obsidian knowledge companion and self-organizing AI second brain. A running AI notetaker that builds and maintains a persistent, compounding wiki vault. Every source you add gets integrated. Every question you ask pulls from everything that has been read. Knowledge compounds like interest.
 
 Open-source Obsidian AI plugin for AI note-taking, personal knowledge management (PKM), second-brain workflows, and a private Notion alternative. **15 Claude Code skills**, multi-agent support, multi-writer safe (v1.7+), first-class methodology modes (LYT / PARA / Zettelkasten / Generic via v1.8), and the 10-principle thinking framework (v1.9). Based on [Andrej Karpathy's LLM Wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f).
 
-> **Two ways to get this skill.** Pick the one that fits how you work.
->
-> - 🌐 **Public open-source build** (latest: `v1.9.2`, recommended): the free, MIT-licensed release on [Daniel Agrici's GitHub](https://github.com/AgriciDaniel/claude-obsidian). Open to anyone, no membership required. Ships everything: v1.7 Compound Vault, v1.8 methodology modes, and the v1.9 thinking framework plus audit hardening.
-> - ⚡ **AI Marketing Hub Pro**: the same MIT-licensed core, plus earliest access to in-development features before they land here, direct collaboration, and the [Pro community](https://www.skool.com/ai-marketing-hub-pro). Pro members install from the [AI Marketing Hub](https://github.com/AI-Marketing-Hub) org mirror (swap note under Option 2 below).
+The free, MIT-licensed build (latest: `v1.9.2`) lives on [GitHub](https://github.com/AndreikaKanareika/claude-obsidian). It ships everything: v1.7 Compound Vault, v1.8 methodology modes, and the v1.9 thinking framework plus audit hardening.
 
 > ✨ **v1.7 "Compound Vault" refoundation**: Obsidian CLI as default transport, hybrid retrieval (contextual prefix + BM25 + cosine rerank per [Anthropic's Sept 2024 research](https://www.anthropic.com/news/contextual-retrieval)), per-file advisory locking that closes a latent multi-writer corruption hole, and substrate alignment with [kepano/obsidian-skills](https://github.com/kepano/obsidian-skills). Full guide: [docs/compound-vault-guide.md](docs/compound-vault-guide.md). Optional [DragonScale Memory](docs/dragonscale-guide.md) extension (log folds, deterministic page addresses, semantic tiling lint, boundary-first autoresearch).
 
@@ -56,7 +51,6 @@ Open-source Obsidian AI plugin for AI note-taking, personal knowledge management
 - [Uninstall](#uninstall)
 - [Contributing](#contributing)
 - [Related Projects](#related-projects)
-- [Community](#community)
 - [License](#license)
 
 ---
@@ -104,18 +98,14 @@ Most Obsidian AI plugins are chat interfaces. They answer questions about your e
 | **Batch ingestion** | ✅ Parallel agents for multiple sources | ❌ | ❌ |
 | **Open source** | ✅ MIT | ✅ MIT | ⚠️ Freemium |
 
-> 📖 **Deep dive:** [I Turned Obsidian Into a Self-Organizing AI Brain](https://agricidaniel.com/blog/claude-obsidian-ai-second-brain). Full breakdown with data visualizations, market context, and workflow demos.
-
 ---
 
 ## Quick Start
 
-> ℹ️ The commands below install the **public open-source build** from `AgriciDaniel/claude-obsidian` (recommended, no membership needed). **AI Marketing Hub Pro members** who want early access to in-development features can swap `AgriciDaniel/claude-obsidian` for `AI-Marketing-Hub/claude-obsidian` (Option 2 also swaps the plugin slug; see the note under that option).
-
 ### Option 1: Clone as vault (recommended, full setup in 2 minutes)
 
 ```bash
-git clone https://github.com/AgriciDaniel/claude-obsidian
+git clone https://github.com/AndreikaKanareika/claude-obsidian
 cd claude-obsidian
 bash bin/setup-vault.sh
 ```
@@ -132,14 +122,9 @@ Open Claude Code in the same folder. Type `/wiki`.
 
 Plugin installation is a two-step process. First add the marketplace catalog, then install the plugin from it.
 
-> ℹ️ **Which version are you installing?**
->
-> - **Public (recommended, no membership):** the commands below install the free, MIT-licensed release from [`AgriciDaniel/claude-obsidian`](https://github.com/AgriciDaniel/claude-obsidian). Nothing to sign up for.
-> - **AI Marketing Hub Pro member?** For early access to in-development features, swap `AgriciDaniel/claude-obsidian` for `AI-Marketing-Hub/claude-obsidian` and the plugin slug `claude-obsidian@agricidaniel-claude-obsidian` for `claude-obsidian@ai-marketing-hub-claude-obsidian`. The org mirror requires an authenticated `gh auth login` (or GitHub PAT) with access to the `AI-Marketing-Hub` org. If `/plugin marketplace add` returns a 404, your account is not in the org yet. DM in the [Skool community](https://www.skool.com/ai-marketing-hub-pro) to get added.
-
 ```bash
 # Step 1: add the marketplace
-claude plugin marketplace add AgriciDaniel/claude-obsidian
+claude plugin marketplace add AndreikaKanareika/claude-obsidian
 
 # Step 2: install the plugin
 claude plugin install claude-obsidian@agricidaniel-claude-obsidian
@@ -290,18 +275,57 @@ Point any Claude Code project at this vault. Add to that project's `CLAUDE.md`:
 
 ```markdown
 ## Wiki Knowledge Base
-Path: ~/path/to/vault
+My persistent knowledge base lives at the path in `$CLAUDE_OBSIDIAN_VAULT`
+(or an absolute path like `~/path/to/vault`), reachable via the `obsidian-vault`
+MCP tools (or by reading the files directly).
 
-When you need context not already in this project:
-1. Read wiki/hot.md first (recent context cache)
-2. If not enough, read wiki/index.md
-3. If you need domain details, read the relevant domain sub-index
-4. Only then drill into specific wiki pages
+Before answering anything that isn't a self-contained coding task, consult it:
+1. Read wiki/hot.md (recent-context cache)
+2. Then wiki/index.md (master catalog)
+3. Drill into the specific wiki pages that match, and cite them
+If nothing relevant exists, say so and answer normally.
 
-Do NOT read the wiki for general coding questions or tasks unrelated to [domain].
+Skip the wiki for routine coding tasks unrelated to its topics, or things already in this project.
+
+Write back too, don't just read: when a durable insight, decision, or answer emerges,
+proactively offer to save it (/save) or ingest sources (/wiki-ingest) to the vault via the
+obsidian-vault MCP tools (path-agnostic, so they work from any project). Reading is automatic
+when CLAUDE_OBSIDIAN_VAULT is set in ~/.claude/settings.json — claude-obsidian
+v1.9.2-global-access+ injects wiki/hot.md at session start from any directory.
 ```
 
+> To point *this* project at a different vault than the global default, use an absolute path
+> in place of `$CLAUDE_OBSIDIAN_VAULT`. The auto-commit platform caveat (`flock` on Windows)
+> lives in the [platform note](docs/updating-and-configuring.md), not in this copy-paste block.
+
 Your executive assistant, coding projects, and content workflows all draw from the same knowledge base.
+
+### Make the hooks work from any directory (v1.9.2-global-access)
+
+The plugin's command hooks (hot-cache injection at session start, auto-commit of
+vault changes, the Stop-time hot-cache refresh nudge) historically only fired when
+Claude Code ran **inside** the vault. Set one environment variable and they work from
+**any** project directory pointed at a single global vault:
+
+```jsonc
+// ~/.claude/settings.json
+{
+  "env": {
+    "CLAUDE_OBSIDIAN_VAULT": "/absolute/path/to/your/vault"
+  }
+}
+```
+
+With it set, the hooks resolve the vault by absolute path. Unset, they fall back to the
+current directory — exactly the pre-global-access behavior. The Stop hook now also commits vault
+writes made via the `obsidian-vault` MCP server (previously those never auto-committed).
+See [docs/updating-and-configuring.md](docs/updating-and-configuring.md) for the full
+setup.
+
+> **Windows note:** auto-commit needs `flock` (via `wiki-lock.sh`), which Git Bash lacks —
+> where it's missing the commit **defers** and you commit the vault manually; hot-cache
+> injection and reading still work. Details in the guide's
+> [platform note](docs/updating-and-configuring.md).
 
 ---
 
@@ -555,7 +579,7 @@ The best AI second brain keeps your data yours. claude-obsidian stores everythin
 Drop any source into the vault. Claude reads it, extracts the entities and concepts, links them to what you already have, and files it into a structured Obsidian vault. You ask questions; it answers from everything it has read and cites the pages. The knowledge base gets richer and more connected with every session.
 
 **How do I connect Claude to Obsidian as a second brain?**
-Two lines: `git clone https://github.com/AgriciDaniel/claude-obsidian`, then `cd claude-obsidian && bash bin/setup-vault.sh`. Open the folder as an Obsidian vault, open Claude Code in the same folder, and type `/wiki`. Full steps in [Quick Start](#quick-start).
+Two lines: `git clone https://github.com/AndreikaKanareika/claude-obsidian`, then `cd claude-obsidian && bash bin/setup-vault.sh`. Open the folder as an Obsidian vault, open Claude Code in the same folder, and type `/wiki`. Full steps in [Quick Start](#quick-start).
 
 **Is there a good Notion alternative for a private, AI-powered knowledge base?**
 Yes. claude-obsidian is an open-source, local-first alternative: your notes are plain Markdown on your own disk instead of a hosted database, and AI organizes them for you. No vendor lock-in and no monthly fee.
@@ -580,9 +604,6 @@ Methodology Modes (v1.8+) control **how** pages are organized: folder structure 
 
 **Does this send my notes to Anthropic?**
 No by default. The optional `/wiki-retrieve` skill has API egress (`contextual-prefix.py`) gated behind the `--allow-egress` consent flag. Without that flag, retrieval is fully local (BM25 + optional ollama rerank). Web egress in `/autoresearch` follows the same opt-in principle.
-
-**What is the difference between the public build and AI Marketing Hub Pro?**
-Both share the same MIT-licensed core on [`AgriciDaniel/claude-obsidian`](https://github.com/AgriciDaniel/claude-obsidian), which is the recommended install for everyone. AI Marketing Hub Pro members get earliest access to in-development features before they ship here, plus direct collaboration and the community. There are no paid-only features in the core.
 
 **What is DragonScale Memory?**
 An optional opt-in extension (`bash bin/setup-dragonscale.sh`) that adds four memory mechanisms: log folds (rollup of past entries), deterministic page addresses (counter-based unique IDs), semantic tiling lint (chunk-boundary validation via ollama), and boundary-first autoresearch (research the vault's "frontier" first). Not required for normal use. Full guide: [`docs/dragonscale-guide.md`](docs/dragonscale-guide.md).
@@ -614,7 +635,7 @@ Plugin install:
 
 ```bash
 claude plugin uninstall claude-obsidian@agricidaniel-claude-obsidian
-claude plugin marketplace remove AgriciDaniel/claude-obsidian
+claude plugin marketplace remove AndreikaKanareika/claude-obsidian
 ```
 
 Clone install (delete the folder):
@@ -649,28 +670,20 @@ Issue + PR templates available under [`.github/`](.github/). CI runs `make test`
 
 ---
 
-## Community
-
-- 📝 [**Blog post**](https://agricidaniel.com/blog/claude-obsidian-ai-second-brain): deep dive with competitor analysis, data charts, and workflow demos
-- 💬 [**AI Marketing Hub**](https://www.skool.com/ai-marketing-hub): 2,800+ members, free community
-- ⚡ [**AI Marketing Hub Pro**](https://www.skool.com/ai-marketing-hub-pro): early access to in-development features and direct collaboration
-- 🎬 [**YouTube**](https://www.youtube.com/@AgriciDaniel): tutorials and demos
-- 🔧 [**All open-source tools**](https://github.com/AgriciDaniel): claude-seo, claude-ads, claude-blog, and more
-
----
-
 ## License
 
 MIT License. See [LICENSE](LICENSE) for full text. Free for personal and commercial use. Attribution appreciated but not required.
+
+This project is a fork of [`claude-obsidian`](https://github.com/AgriciDaniel/claude-obsidian) by AgriciDaniel, which is also MIT-licensed.
 
 ---
 
 ## Star History
 
-<a href="https://star-history.com/#AgriciDaniel/claude-obsidian&Date">
-  <img src="https://api.star-history.com/svg?repos=AgriciDaniel/claude-obsidian&type=Date" alt="Star history chart for AgriciDaniel/claude-obsidian on GitHub" width="640" />
+<a href="https://star-history.com/#AndreikaKanareika/claude-obsidian&Date">
+  <img src="https://api.star-history.com/svg?repos=AndreikaKanareika/claude-obsidian&type=Date" alt="Star history chart for AndreikaKanareika/claude-obsidian on GitHub" width="640" />
 </a>
 
 ---
 
-*Based on [Andrej Karpathy's LLM Wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f). Built by [Agrici Daniel](https://agricidaniel.com/about). Compounding knowledge is the highest-leverage habit a thinking person can build.*
+*Based on [Andrej Karpathy's LLM Wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f). A fork of [`claude-obsidian`](https://github.com/AgriciDaniel/claude-obsidian) by AgriciDaniel (MIT-licensed). Compounding knowledge is the highest-leverage habit a thinking person can build.*

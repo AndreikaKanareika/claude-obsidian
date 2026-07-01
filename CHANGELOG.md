@@ -2,6 +2,79 @@
 
 All notable changes to claude-obsidian. Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [SemVer](https://semver.org/).
 
+## [1.9.2-global-access] - 2026-07-01 (vault-path-aware command hooks)
+
+Makes the plugin's command hooks work when Claude Code drives a **single global vault**
+from **another project's directory**. Previously every command hook in `hooks/hooks.json`
+used current-directory-relative paths, so a global-vault user got no hot-cache injection,
+no auto-commit, and no Stop-time refresh nudge unless the session was launched inside the
+vault. Additionally, vault writes made through the `obsidian-vault` **MCP** server never
+auto-committed (the `PostToolUse` matcher is `Write|Edit`, which MCP calls are not).
+
+Setup/upgrade walkthrough: [`docs/updating-and-configuring.md`](docs/updating-and-configuring.md).
+
+### Added
+
+- **`scripts/vault-root.sh`** — deterministic vault-root resolver. Echoes
+  `$CLAUDE_OBSIDIAN_VAULT` when it is set *and* looks like a vault (`wiki/` or `.obsidian/`
+  present), else falls back to `$PWD`. The "looks like a vault" guard means a misconfigured
+  env var degrades to the pre-global-access behavior instead of operating on the wrong directory.
+- **`scripts/auto-commit.sh <vault-root>`** — the lock-aware `git add`/commit dance,
+  extracted (behavior-preserving) from the old inline `PostToolUse` command and
+  parameterized by vault root. Now shared by both the `PostToolUse` and `Stop` hooks.
+- **`CLAUDE_OBSIDIAN_VAULT`** environment variable — set it in `~/.claude/settings.json`'s
+  `env` block to point the hooks at a global vault from any directory.
+- `tests/test_vault_root.sh` and `tests/test_auto_commit.sh` (hermetic), wired into
+  `make test` (now 11 suites) plus `make test-vault-root` / `make test-auto-commit`.
+- `docs/updating-and-configuring.md` — step-by-step update + configuration guide for
+  existing installs and first-time installers.
+
+### Changed
+
+- **All four command hooks** (`hooks/hooks.json`) now resolve the vault via
+  `vault-root.sh` (located through `$CLAUDE_PLUGIN_ROOT`, with a relative fallback) and
+  operate on absolute paths: SessionStart hot-cache `cat`, SessionStart `clear-stale`
+  (now passing `WIKI_LOCK_VAULT`), PostToolUse auto-commit, and the Stop refresh nudge.
+- **The Stop hook now also commits pending vault changes** before emitting the nudge —
+  closing the gap where `obsidian-vault` MCP writes never auto-committed. The
+  wiki-changed flag is captured *before* the commit so the hot-cache refresh nudge still
+  fires.
+- Prompt-type hooks (SessionStart context restore, PostCompact re-read) now reference
+  `$CLAUDE_OBSIDIAN_VAULT` in addition to a cwd `wiki/` folder.
+- `.claude-plugin/plugin.json` + `marketplace.json` version 1.9.2-hidden-skills → 1.9.2-global-access.
+
+### Fixed
+
+- **Auto-commit no longer drops changes on a fresh/minimal vault.** The old inline hook ran
+  a fixed `-- wiki/ .raw/ .vault-meta/` pathspec on **both** `git add` and `git commit`.
+  Either aborts the whole operation ("pathspec did not match any file(s) known to git") when
+  a sub-dir is absent (`.raw/`/`.vault-meta/` missing — `vault-root.sh` accepts a wiki-only
+  vault) or, for `git commit`, empty — silently dropping the wiki change. `auto-commit.sh`
+  now (a) stages only the sub-dirs that **exist** (per-dir `git add`) and (b) commits only
+  the sub-dirs with **staged changes** — robust in a fresh/minimal vault, still scoped so it
+  never sweeps in the user's unrelated staged files. Guarded by a `tests/test_auto_commit.sh`
+  regression case (wiki-only vault with no `.raw/`/`.vault-meta/`) that fails against the old
+  add line and passes against the fix.
+
+### Backward compatibility
+
+- With `CLAUDE_OBSIDIAN_VAULT` **unset**, every hook resolves the vault to `$PWD` — the
+  exact pre-global-access behavior. In-vault sessions are unaffected.
+- With `$CLAUDE_PLUGIN_ROOT` unset (older Claude Code), hooks fall back to relative
+  `scripts/`, which is correct when the cwd is the vault.
+
+### Verification
+
+- `bash tests/test_vault_root.sh`: 6/6 green (unset→cwd, wiki/ vault, .obsidian/ vault,
+  non-vault→cwd, nonexistent→cwd, relative→absolutized).
+- `bash tests/test_auto_commit.sh`: 8/8 green on a flock-less host. The add+commit happy
+  path is exercised on **every** host via a copy of `auto-commit.sh` with no `wiki-lock.sh`
+  sibling (skips the lock check), plus the fresh-vault regression above. The *lock-held /
+  after-release* deferral assertions still require real `flock`, so on Git Bash/Windows they
+  SKIP and the test instead verifies the defer-on-lock-error path (including the `hook.log`
+  breadcrumb). Auto-commit itself remains dormant on a flock-less host by design.
+- `hooks/hooks.json` validated as parseable JSON.
+
 ## [1.9.2] - 2026-05-27 (prompt-cache hardening + path-handling robustness)
 
 Ports Anthropic prompt-caching best practices into the **one** place the plugin calls the Anthropic API directly: tier-1 contextual-prefix generation in `scripts/contextual-prefix.py`. Verified by full-repo sweep that `cache_control` and the Anthropic API surface exist nowhere else (incl. `claude-canvas/`). No change to retrieval output — API payload shape + observability only.

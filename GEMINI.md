@@ -58,6 +58,5 @@ On first session:
 
 ## Project Links
 
-- Plugin (public canonical): https://github.com/AgriciDaniel/claude-obsidian
-- Community early-access mirror (Pro): https://github.com/AI-Marketing-Hub
+- Plugin: https://github.com/AndreikaKanareika/claude-obsidian
 - Pattern: https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f
