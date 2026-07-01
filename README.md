@@ -12,17 +12,12 @@
 [![Claude Code](https://img.shields.io/badge/Claude_Code-plugin-8B5CF6)](https://code.claude.com/docs/en/discover-plugins)
 [![Obsidian](https://img.shields.io/badge/Obsidian-v1.9.10%2B-7c3aed)](https://obsidian.md)
 [![Agent Skills](https://img.shields.io/badge/Agent%20Skills-Compatible-blue)](https://agentskills.io)
-[![Community](https://img.shields.io/badge/AI%20Marketing%20Hub-Pro%20community-purple)](https://www.skool.com/ai-marketing-hub-pro)
-[![Blog Post](https://img.shields.io/badge/Deep_Dive-Blog_Post-22c55e)](https://agricidaniel.com/blog/claude-obsidian-ai-second-brain)
 
 Claude + Obsidian knowledge companion and self-organizing AI second brain. A running AI notetaker that builds and maintains a persistent, compounding wiki vault. Every source you add gets integrated. Every question you ask pulls from everything that has been read. Knowledge compounds like interest.
 
 Open-source Obsidian AI plugin for AI note-taking, personal knowledge management (PKM), second-brain workflows, and a private Notion alternative. **15 Claude Code skills**, multi-agent support, multi-writer safe (v1.7+), first-class methodology modes (LYT / PARA / Zettelkasten / Generic via v1.8), and the 10-principle thinking framework (v1.9). Based on [Andrej Karpathy's LLM Wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f).
 
-> **Two ways to get this skill.** Pick the one that fits how you work.
->
-> - 🌐 **Public open-source build** (latest: `v1.9.2`, recommended): the free, MIT-licensed release on [Daniel Agrici's GitHub](https://github.com/AndreikaKanareika/claude-obsidian). Open to anyone, no membership required. Ships everything: v1.7 Compound Vault, v1.8 methodology modes, and the v1.9 thinking framework plus audit hardening.
-> - ⚡ **AI Marketing Hub Pro**: the same MIT-licensed core, plus earliest access to in-development features before they land here, direct collaboration, and the [Pro community](https://www.skool.com/ai-marketing-hub-pro). Pro members install from the [AI Marketing Hub](https://github.com/AI-Marketing-Hub) org mirror (swap note under Option 2 below).
+The free, MIT-licensed build (latest: `v1.9.2`) lives on [GitHub](https://github.com/AndreikaKanareika/claude-obsidian). It ships everything: v1.7 Compound Vault, v1.8 methodology modes, and the v1.9 thinking framework plus audit hardening.
 
 > ✨ **v1.7 "Compound Vault" refoundation**: Obsidian CLI as default transport, hybrid retrieval (contextual prefix + BM25 + cosine rerank per [Anthropic's Sept 2024 research](https://www.anthropic.com/news/contextual-retrieval)), per-file advisory locking that closes a latent multi-writer corruption hole, and substrate alignment with [kepano/obsidian-skills](https://github.com/kepano/obsidian-skills). Full guide: [docs/compound-vault-guide.md](docs/compound-vault-guide.md). Optional [DragonScale Memory](docs/dragonscale-guide.md) extension (log folds, deterministic page addresses, semantic tiling lint, boundary-first autoresearch).
 
@@ -56,7 +51,6 @@ Open-source Obsidian AI plugin for AI note-taking, personal knowledge management
 - [Uninstall](#uninstall)
 - [Contributing](#contributing)
 - [Related Projects](#related-projects)
-- [Community](#community)
 - [License](#license)
 
 ---
@@ -104,13 +98,9 @@ Most Obsidian AI plugins are chat interfaces. They answer questions about your e
 | **Batch ingestion** | ✅ Parallel agents for multiple sources | ❌ | ❌ |
 | **Open source** | ✅ MIT | ✅ MIT | ⚠️ Freemium |
 
-> 📖 **Deep dive:** [I Turned Obsidian Into a Self-Organizing AI Brain](https://agricidaniel.com/blog/claude-obsidian-ai-second-brain). Full breakdown with data visualizations, market context, and workflow demos.
-
 ---
 
 ## Quick Start
-
-> ℹ️ The commands below install the **public open-source build** from `AndreikaKanareika/claude-obsidian` (recommended, no membership needed). **AI Marketing Hub Pro members** who want early access to in-development features can swap `AndreikaKanareika/claude-obsidian` for `AI-Marketing-Hub/claude-obsidian` (Option 2 also swaps the plugin slug; see the note under that option).
 
 ### Option 1: Clone as vault (recommended, full setup in 2 minutes)
 
@@ -131,11 +121,6 @@ Open Claude Code in the same folder. Type `/wiki`.
 ### Option 2: Install as Claude Code plugin
 
 Plugin installation is a two-step process. First add the marketplace catalog, then install the plugin from it.
-
-> ℹ️ **Which version are you installing?**
->
-> - **Public (recommended, no membership):** the commands below install the free, MIT-licensed release from [`AndreikaKanareika/claude-obsidian`](https://github.com/AndreikaKanareika/claude-obsidian). Nothing to sign up for.
-> - **AI Marketing Hub Pro member?** For early access to in-development features, swap `AndreikaKanareika/claude-obsidian` for `AI-Marketing-Hub/claude-obsidian` and the plugin slug `claude-obsidian@agricidaniel-claude-obsidian` for `claude-obsidian@ai-marketing-hub-claude-obsidian`. The org mirror requires an authenticated `gh auth login` (or GitHub PAT) with access to the `AI-Marketing-Hub` org. If `/plugin marketplace add` returns a 404, your account is not in the org yet. DM in the [Skool community](https://www.skool.com/ai-marketing-hub-pro) to get added.
 
 ```bash
 # Step 1: add the marketplace
@@ -620,9 +605,6 @@ Methodology Modes (v1.8+) control **how** pages are organized: folder structure 
 **Does this send my notes to Anthropic?**
 No by default. The optional `/wiki-retrieve` skill has API egress (`contextual-prefix.py`) gated behind the `--allow-egress` consent flag. Without that flag, retrieval is fully local (BM25 + optional ollama rerank). Web egress in `/autoresearch` follows the same opt-in principle.
 
-**What is the difference between the public build and AI Marketing Hub Pro?**
-Both share the same MIT-licensed core on [`AndreikaKanareika/claude-obsidian`](https://github.com/AndreikaKanareika/claude-obsidian), which is the recommended install for everyone. AI Marketing Hub Pro members get earliest access to in-development features before they ship here, plus direct collaboration and the community. There are no paid-only features in the core.
-
 **What is DragonScale Memory?**
 An optional opt-in extension (`bash bin/setup-dragonscale.sh`) that adds four memory mechanisms: log folds (rollup of past entries), deterministic page addresses (counter-based unique IDs), semantic tiling lint (chunk-boundary validation via ollama), and boundary-first autoresearch (research the vault's "frontier" first). Not required for normal use. Full guide: [`docs/dragonscale-guide.md`](docs/dragonscale-guide.md).
 
@@ -688,19 +670,11 @@ Issue + PR templates available under [`.github/`](.github/). CI runs `make test`
 
 ---
 
-## Community
-
-- 📝 [**Blog post**](https://agricidaniel.com/blog/claude-obsidian-ai-second-brain): deep dive with competitor analysis, data charts, and workflow demos
-- 💬 [**AI Marketing Hub**](https://www.skool.com/ai-marketing-hub): 2,800+ members, free community
-- ⚡ [**AI Marketing Hub Pro**](https://www.skool.com/ai-marketing-hub-pro): early access to in-development features and direct collaboration
-- 🎬 [**YouTube**](https://www.youtube.com/@AgriciDaniel): tutorials and demos
-- 🔧 [**All open-source tools**](https://github.com/AgriciDaniel): claude-seo, claude-ads, claude-blog, and more
-
----
-
 ## License
 
 MIT License. See [LICENSE](LICENSE) for full text. Free for personal and commercial use. Attribution appreciated but not required.
+
+This project is a fork of [`claude-obsidian`](https://github.com/AgriciDaniel/claude-obsidian) by AgriciDaniel, which is also MIT-licensed.
 
 ---
 
@@ -712,4 +686,4 @@ MIT License. See [LICENSE](LICENSE) for full text. Free for personal and commerc
 
 ---
 
-*Based on [Andrej Karpathy's LLM Wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f). Built by [Agrici Daniel](https://agricidaniel.com/about). Compounding knowledge is the highest-leverage habit a thinking person can build.*
+*Based on [Andrej Karpathy's LLM Wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f). A fork of [`claude-obsidian`](https://github.com/AgriciDaniel/claude-obsidian) by AgriciDaniel (MIT-licensed). Compounding knowledge is the highest-leverage habit a thinking person can build.*

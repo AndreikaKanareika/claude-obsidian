@@ -882,4 +882,4 @@ The human's job: curate sources, ask good questions, think about what it means. 
 
 ---
 
-*Based on Andrej Karpathy's LLM Wiki pattern. Plugin: claude-obsidian by AgriciDaniel / AI Marketing Hub.*
+*Based on Andrej Karpathy's LLM Wiki pattern. claude-obsidian is MIT-licensed; this fork is maintained by AndreikaKanareika, forked from AgriciDaniel's original.*

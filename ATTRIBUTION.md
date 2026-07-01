@@ -42,7 +42,8 @@ The following Obsidian community plugins ship with this vault as pre-installed b
 
 ## claude-obsidian
 
-**Author:** AgriciDaniel / AI Marketing Hub
+**Author:** AgriciDaniel
 **License:** MIT (see [LICENSE](LICENSE))
-**Repository (public canonical):** https://github.com/AgriciDaniel/claude-obsidian
-**Community early-access mirror (Pro):** https://github.com/AI-Marketing-Hub
+**Repository (public canonical):** https://github.com/AndreikaKanareika/claude-obsidian
+
+**Upstream:** This project is a fork of [`AgriciDaniel/claude-obsidian`](https://github.com/AgriciDaniel/claude-obsidian) (MIT), the original work by AgriciDaniel.

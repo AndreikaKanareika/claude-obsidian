@@ -94,13 +94,3 @@ After staging changes for a non-trivial workstream but BEFORE running `git commi
 
 If you configured the MCP server, Claude can read and write vault notes directly.
 See `skills/wiki/references/mcp-setup.md` for setup instructions.
-
-## Release Blog Post
-
-After cutting a new release (git tag + `gh release create`), run:
-
-```
-/release-blog
-```
-
-This generates a blog post on https://agricidaniel.com/blog/, handles cover image generation, SEO metadata, FAQ schema, internal linking, sitemap/llms.txt updates, Vercel deployment, and Google indexing.
